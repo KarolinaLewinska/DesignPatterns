@@ -2,11 +2,11 @@ package com.java.designpatterns.singleton;
 
 public class MobileUser {
     private static MobileUser mobileUser;
-    public String login;
-    public String name;
-    public String surname;
-    public Integer age;
-    public String token;
+    private String login;
+    private String name;
+    private String surname;
+    private Integer age;
+    private String token;
 
     protected MobileUser() {
 
