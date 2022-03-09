@@ -1,5 +1,5 @@
-# DesignPatterns
-### Design patterns implementations:
+# Design Patterns
+### Design patterns exercises:
 #### Singleton
 
 
