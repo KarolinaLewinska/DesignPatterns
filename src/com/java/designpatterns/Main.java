@@ -1,5 +1,8 @@
 package com.java.designpatterns;
 
+import com.java.designpatterns.builder.buider2.FlashPlayerCreator;
+import com.java.designpatterns.builder.buider2.Generator;
+import com.java.designpatterns.builder.buider2.HtmlPlayerCreator;
 import com.java.designpatterns.builder.builder1.Builder;
 import com.java.designpatterns.builder.builder1.BuilderQW;
 import com.java.designpatterns.builder.builder1.BuilderXY;
@@ -40,11 +43,21 @@ public class Main {
         Builder builderXY = new BuilderXY();
         Builder builderQW = new BuilderQW();
 
-        director.assembly(builderXY);
+        director.assemblePieces(builderXY);
         builderXY.returnProduct().showPieces();
 
-        director.assembly(builderQW);
+        director.assemblePieces(builderQW);
         builderQW.returnProduct().showPieces();
+
         ////////////
+        Generator generator = new Generator();
+        FlashPlayerCreator flashCreator = new FlashPlayerCreator();
+        HtmlPlayerCreator htmlCreator = new HtmlPlayerCreator();
+
+        generator.assemblePlayer(flashCreator);
+        flashCreator.returnPlayer().showName();
+
+        generator.assemblePlayer(htmlCreator);
+        htmlCreator.returnPlayer().showName();
     }
 }
