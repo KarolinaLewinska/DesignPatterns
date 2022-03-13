@@ -7,13 +7,16 @@ import com.java.designpatterns.builder.builder1.Builder;
 import com.java.designpatterns.builder.builder1.BuilderQW;
 import com.java.designpatterns.builder.builder1.BuilderXY;
 import com.java.designpatterns.builder.builder1.Director;
+import com.java.designpatterns.factory.militaryunit.FactoryUnit;
+import com.java.designpatterns.factory.militaryunit.MilitaryFactory;
+import com.java.designpatterns.factory.militaryunit.MilitaryUnit;
 import com.java.designpatterns.singleton.MobileUser;
 import com.java.designpatterns.singleton.ServersController;
 import com.java.designpatterns.singleton.Singleton;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         //Singleton
         Singleton singleton = Singleton.returnInstance();
         Singleton singleton2 = Singleton.returnInstance();
@@ -59,5 +62,12 @@ public class Main {
 
         generator.assemblePlayer(htmlCreator);
         htmlCreator.returnPlayer().showName();
+
+        //Factory
+        MilitaryFactory factory = new FactoryUnit();
+        MilitaryUnit tank = factory.createUnit(MilitaryFactory.UnitType.TANK);
+        MilitaryUnit shooter = factory.createUnit(MilitaryFactory.UnitType.SHOOTER);
+        System.out.println(tank.life);
+        System.out.println(shooter.forceOfDestruction);
     }
 }
