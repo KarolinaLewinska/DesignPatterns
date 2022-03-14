@@ -1,5 +1,8 @@
 package com.java.designpatterns;
 
+import com.java.designpatterns.abstractfactory.sales.CompanySale;
+import com.java.designpatterns.abstractfactory.sales.IndividualSale;
+import com.java.designpatterns.abstractfactory.sales.SaleFactory;
 import com.java.designpatterns.builder.buider2.FlashPlayerCreator;
 import com.java.designpatterns.builder.buider2.Generator;
 import com.java.designpatterns.builder.buider2.HtmlPlayerCreator;
@@ -13,6 +16,9 @@ import com.java.designpatterns.factory.militaryunit.MilitaryUnit;
 import com.java.designpatterns.singleton.MobileUser;
 import com.java.designpatterns.singleton.ServersController;
 import com.java.designpatterns.singleton.Singleton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -69,5 +75,17 @@ public class Main {
         MilitaryUnit shooter = factory.createUnit(MilitaryFactory.UnitType.SHOOTER);
         System.out.println(tank.life);
         System.out.println(shooter.forceOfDestruction);
+
+        //Abstract Factory
+        List<SaleFactory> saleFactory = new ArrayList<>();
+        saleFactory.add(new IndividualSale());
+        saleFactory.add(new CompanySale());
+        saleFactory.forEach(SaleFactory::createSaleDocument);
+        saleFactory.forEach(s -> {
+            String name = s.createSaleDocument().name;
+            int numberOfItems = s.createSaleDocument().numberOfItems;
+            float singleItemPrice = s.createSaleDocument().singleItemPrice;
+            System.out.println(name + "\n" + numberOfItems + "\n" + singleItemPrice);
+        });
     }
 }
