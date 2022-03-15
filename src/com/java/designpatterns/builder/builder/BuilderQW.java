@@ -1,4 +1,4 @@
-package com.java.designpatterns.builder.builder1;
+package com.java.designpatterns.builder.builder;
 
 public class BuilderQW extends Builder {
     private Product productQW = new Product();

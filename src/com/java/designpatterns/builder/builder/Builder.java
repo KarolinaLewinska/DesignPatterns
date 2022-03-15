@@ -1,4 +1,4 @@
-package com.java.designpatterns.builder.builder1;
+package com.java.designpatterns.builder.builder;
 
 public abstract class Builder {
     public abstract void assemblePieceA();

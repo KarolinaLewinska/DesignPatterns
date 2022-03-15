@@ -1,4 +1,4 @@
-package com.java.designpatterns.builder.buider2;
+package com.java.designpatterns.builder.players;
 
 public class Player {
     private String name;

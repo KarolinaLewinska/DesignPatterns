@@ -1,4 +1,4 @@
-package com.java.designpatterns.factory.militaryunit;
+package com.java.designpatterns.factory.militaryunits;
 
 public abstract class MilitaryUnit {
     public int life;

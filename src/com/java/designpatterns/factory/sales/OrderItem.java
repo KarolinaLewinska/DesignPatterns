@@ -1,4 +1,4 @@
-package com.java.designpatterns.abstractfactory.sales;
+package com.java.designpatterns.factory.sales;
 
 public abstract class OrderItem {
     public String name;

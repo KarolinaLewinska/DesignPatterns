@@ -1,4 +1,4 @@
-package com.java.designpatterns.factory.militaryunit;
+package com.java.designpatterns.factory.militaryunits;
 
 public class Shooter extends MilitaryUnit{
 
