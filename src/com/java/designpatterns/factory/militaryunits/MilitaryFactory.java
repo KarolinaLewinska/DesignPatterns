@@ -5,6 +5,7 @@ public abstract class MilitaryFactory {
 
     public enum UnitType {
         SHOOTER,
-        TANK
+        TANK,
+        HELICOPTER
     }
 }

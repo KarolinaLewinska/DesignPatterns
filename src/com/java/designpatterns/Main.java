@@ -1,18 +1,27 @@
 package com.java.designpatterns;
 
-import com.java.designpatterns.abstractfactory.sales.CompanySale;
-import com.java.designpatterns.abstractfactory.sales.IndividualSale;
-import com.java.designpatterns.abstractfactory.sales.SaleFactory;
-import com.java.designpatterns.builder.buider2.FlashPlayerCreator;
-import com.java.designpatterns.builder.buider2.Generator;
-import com.java.designpatterns.builder.buider2.HtmlPlayerCreator;
-import com.java.designpatterns.builder.builder1.Builder;
-import com.java.designpatterns.builder.builder1.BuilderQW;
-import com.java.designpatterns.builder.builder1.BuilderXY;
-import com.java.designpatterns.builder.builder1.Director;
-import com.java.designpatterns.factory.militaryunit.FactoryUnit;
-import com.java.designpatterns.factory.militaryunit.MilitaryFactory;
-import com.java.designpatterns.factory.militaryunit.MilitaryUnit;
+import com.java.designpatterns.abstractfactory.ArmyAbstractFactory;
+import com.java.designpatterns.abstractfactory.BlueFactory;
+import com.java.designpatterns.abstractfactory.RedFactory;
+import com.java.designpatterns.abstractfactory.militaryunits.AirUnit;
+import com.java.designpatterns.abstractfactory.militaryunits.GroundUnit;
+import com.java.designpatterns.abstractfactory.militaryunits.WalkingUnit;
+import com.java.designpatterns.factory.pizzerias.FirstPizzeria;
+import com.java.designpatterns.factory.pizzerias.Pizzeria;
+import com.java.designpatterns.factory.pizzerias.SecondPizzeria;
+import com.java.designpatterns.factory.sales.CompanySale;
+import com.java.designpatterns.factory.sales.IndividualSale;
+import com.java.designpatterns.factory.sales.SaleFactory;
+import com.java.designpatterns.builder.players.FlashPlayerCreator;
+import com.java.designpatterns.builder.players.Generator;
+import com.java.designpatterns.builder.players.HtmlPlayerCreator;
+import com.java.designpatterns.builder.builder.Builder;
+import com.java.designpatterns.builder.builder.BuilderQW;
+import com.java.designpatterns.builder.builder.BuilderXY;
+import com.java.designpatterns.builder.builder.Director;
+import com.java.designpatterns.factory.militaryunits.FactoryUnit;
+import com.java.designpatterns.factory.militaryunits.MilitaryFactory;
+import com.java.designpatterns.factory.militaryunits.MilitaryUnit;
 import com.java.designpatterns.singleton.MobileUser;
 import com.java.designpatterns.singleton.ServersController;
 import com.java.designpatterns.singleton.Singleton;
@@ -76,7 +85,7 @@ public class Main {
         System.out.println(tank.life);
         System.out.println(shooter.forceOfDestruction);
 
-        //Abstract Factory
+        ////////////
         List<SaleFactory> saleFactory = new ArrayList<>();
         saleFactory.add(new IndividualSale());
         saleFactory.add(new CompanySale());
@@ -87,5 +96,36 @@ public class Main {
             float singleItemPrice = s.createSaleDocument().singleItemPrice;
             System.out.println(name + "\n" + numberOfItems + "\n" + singleItemPrice);
         });
+
+        ////////////
+        List<Pizzeria> pizzerias = new ArrayList<>();
+        pizzerias.add(new FirstPizzeria());
+        pizzerias.add(new SecondPizzeria());
+
+        pizzerias.forEach(p -> {
+            try {
+                p.addPizza("Neapolitan");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        //Abstract Factory
+        ArmyAbstractFactory blueFactory = new BlueFactory();
+        ArmyAbstractFactory redFactory = new RedFactory();
+
+        GroundUnit redTank = redFactory.createGroundUnit(MilitaryFactory.UnitType.TANK);
+        GroundUnit blueTank = blueFactory.createGroundUnit(MilitaryFactory.UnitType.TANK);
+        System.out.println("Red tank life: " + redTank.life + "\n" + "Blue tank life: " + blueTank.life);
+
+        WalkingUnit redShooter = redFactory.createWalkingUnit(MilitaryFactory.UnitType.SHOOTER);
+        WalkingUnit blueShooter = blueFactory.createWalkingUnit(MilitaryFactory.UnitType.SHOOTER);
+        System.out.println("Red shooter experience: " + redShooter.experience + "\n"
+                + "Blue shooter experience: " + blueShooter.experience);
+
+        AirUnit redHelicopter = redFactory.createAirUnit(MilitaryFactory.UnitType.HELICOPTER);
+        AirUnit blueHelicopter = blueFactory.createAirUnit(MilitaryFactory.UnitType.HELICOPTER);
+        System.out.println("Red helicopter force of destruction: " + redHelicopter.forceOfDestruction + "\n"
+                + "Blue helicopter force of destruction: " + blueHelicopter.experience);
     }
 }
