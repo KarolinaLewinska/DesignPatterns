@@ -22,6 +22,8 @@ import com.java.designpatterns.builder.builder.Director;
 import com.java.designpatterns.factory.militaryunits.FactoryUnit;
 import com.java.designpatterns.factory.militaryunits.MilitaryFactory;
 import com.java.designpatterns.factory.militaryunits.MilitaryUnit;
+import com.java.designpatterns.prototype.PrototypeX;
+import com.java.designpatterns.prototype.PrototypeY;
 import com.java.designpatterns.singleton.MobileUser;
 import com.java.designpatterns.singleton.ServersController;
 import com.java.designpatterns.singleton.Singleton;
@@ -127,5 +129,14 @@ public class Main {
         AirUnit blueHelicopter = blueFactory.createAirUnit(MilitaryFactory.UnitType.HELICOPTER);
         System.out.println("Red helicopter force of destruction: " + redHelicopter.forceOfDestruction + "\n"
                 + "Blue helicopter force of destruction: " + blueHelicopter.experience);
+
+        //Prototype
+        PrototypeX px = new PrototypeX("xyz");
+        PrototypeX cloneX = (PrototypeX) px.clone();
+        PrototypeY py = new PrototypeY("abc");
+        PrototypeY cloneY = (PrototypeY) py.clone();
+        System.out.println("Clone of prototypeX: " + cloneX.id + " and of PrototypeY: " + cloneY.id);
+
+        ////////////
     }
 }
