@@ -1,6 +1,5 @@
 # Design Patterns
 ### Design patterns exercises
-#### * Singleton
-#### * Builder
+##### Singleton, Builder, Factory, Abstract Factory
 
 
