@@ -6,6 +6,14 @@ import com.java.designpatterns.abstractfactory.RedFactory;
 import com.java.designpatterns.abstractfactory.militaryunits.AirUnit;
 import com.java.designpatterns.abstractfactory.militaryunits.GroundUnit;
 import com.java.designpatterns.abstractfactory.militaryunits.WalkingUnit;
+import com.java.designpatterns.adapter.Adapter;
+import com.java.designpatterns.adapter.DestinationElement;
+import com.java.designpatterns.adapter.temperatures.FahrenheitSensor;
+import com.java.designpatterns.adapter.temperatures.Sensor;
+import com.java.designpatterns.adapter.temperatures.TemperaturesAdapter;
+import com.java.designpatterns.facade.Facade;
+import com.java.designpatterns.facade.bank.Client;
+import com.java.designpatterns.facade.bank.Mortgage;
 import com.java.designpatterns.factory.pizzerias.FirstPizzeria;
 import com.java.designpatterns.factory.pizzerias.Pizzeria;
 import com.java.designpatterns.factory.pizzerias.SecondPizzeria;
@@ -22,8 +30,13 @@ import com.java.designpatterns.builder.builder.Director;
 import com.java.designpatterns.factory.militaryunits.FactoryUnit;
 import com.java.designpatterns.factory.militaryunits.MilitaryFactory;
 import com.java.designpatterns.factory.militaryunits.MilitaryUnit;
+import com.java.designpatterns.flyweight.FlyweightsFactory;
+import com.java.designpatterns.flyweight.SpecificFlyweight;
+import com.java.designpatterns.flyweight.signs.SignsFactory;
 import com.java.designpatterns.prototype.PrototypeX;
 import com.java.designpatterns.prototype.PrototypeY;
+import com.java.designpatterns.prototype.colors.Color;
+import com.java.designpatterns.prototype.colors.ColorService;
 import com.java.designpatterns.singleton.MobileUser;
 import com.java.designpatterns.singleton.ServersController;
 import com.java.designpatterns.singleton.Singleton;
@@ -138,5 +151,62 @@ public class Main {
         System.out.println("Clone of prototypeX: " + cloneX.id + " and of PrototypeY: " + cloneY.id);
 
         ////////////
+        ColorService service = new ColorService();
+
+        service.setColor("red", new Color(255, 0, 0));
+        service.setColor("blue", new Color(0, 0, 255));
+        service.setColor("green", new Color(0, 255, 0));
+        service.setColor("fire", new Color(211, 33, 19));
+
+        Color redClone = (Color) service.getColors().get("red").clone();
+        Color blueClone = (Color) service.getColors().get("blue").clone();
+        Color greenClone = (Color) service.getColors().get("green").clone();
+        Color fireColor = (Color) service.getColors().get("fire").clone();
+
+        //Facade
+        Facade facade = new Facade();
+        facade.MethodA();
+        facade.MethodB();
+
+        ////////////
+        Mortgage mortgage = new Mortgage();
+        Client client = new  Client("Karolina Lewińska");
+        boolean isQualifiedForMortgage = mortgage.ifIsQualifiedForMortgage(client, 300000);
+        System.out.println(client.getName() + " is qualified in the system as: "
+                + (isQualifiedForMortgage ? "accepted" : "rejected"));
+
+        //Adapter
+        DestinationElement destinationElement = new Adapter();
+        destinationElement.MethodA();
+
+        ////////////
+        Sensor celsius = new TemperaturesAdapter(new FahrenheitSensor());
+        System.out.println("Fahrenheit sensor shows temperature in celsius: " + celsius.getTemperature() + "°C");
+
+        //Flyweight
+        int externalData = 42;
+        FlyweightsFactory flyweightFactory = new FlyweightsFactory();
+        SpecificFlyweight sf = (SpecificFlyweight) flyweightFactory.getFlyweight("Q");
+        sf.method(--externalData);
+
+        SpecificFlyweight sf2 = (SpecificFlyweight) flyweightFactory.getFlyweight("W");
+        sf2.method(--externalData);
+
+        SpecificFlyweight sf3 = (SpecificFlyweight) flyweightFactory.getFlyweight("E");
+        sf3.method(--externalData);
+
+        ////////////
+        String text = "bsASWbsd";
+        char[] chars = text.toCharArray();
+
+        SignsFactory signsFactory = new SignsFactory();
+        for (char sign: chars) {
+            signsFactory.getSign(sign).draw();
+        }
+
+        SignsFactory signsFactory2 = new SignsFactory(24);
+        for (char sign: chars) {
+            signsFactory2.getSign(sign).draw();
+        }
     }
 }
