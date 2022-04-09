@@ -11,6 +11,10 @@ import com.java.designpatterns.adapter.DestinationElement;
 import com.java.designpatterns.adapter.temperatures.FahrenheitSensor;
 import com.java.designpatterns.adapter.temperatures.Sensor;
 import com.java.designpatterns.adapter.temperatures.TemperaturesAdapter;
+import com.java.designpatterns.bridge.Abstraction;
+import com.java.designpatterns.bridge.DerivativeAbstraction;
+import com.java.designpatterns.bridge.OtherImplementation;
+import com.java.designpatterns.bridge.SpecificImplementation;
 import com.java.designpatterns.facade.Facade;
 import com.java.designpatterns.facade.bank.Client;
 import com.java.designpatterns.facade.bank.Mortgage;
@@ -208,5 +212,12 @@ public class Main {
         for (char sign: chars) {
             signsFactory2.getSign(sign).draw();
         }
+
+        //Bridge
+        Abstraction abstraction = new DerivativeAbstraction();
+        abstraction.setImplementation(new SpecificImplementation());
+        abstraction.implementationMethod();
+        abstraction.setImplementation(new OtherImplementation());
+        abstraction.implementationMethod();
     }
 }
