@@ -15,6 +15,8 @@ import com.java.designpatterns.bridge.Abstraction;
 import com.java.designpatterns.bridge.DerivativeAbstraction;
 import com.java.designpatterns.bridge.OtherImplementation;
 import com.java.designpatterns.bridge.SpecificImplementation;
+import com.java.designpatterns.composite.Composite;
+import com.java.designpatterns.composite.Leaf;
 import com.java.designpatterns.facade.Facade;
 import com.java.designpatterns.facade.bank.Client;
 import com.java.designpatterns.facade.bank.Mortgage;
@@ -41,6 +43,8 @@ import com.java.designpatterns.prototype.PrototypeX;
 import com.java.designpatterns.prototype.PrototypeY;
 import com.java.designpatterns.prototype.colors.Color;
 import com.java.designpatterns.prototype.colors.ColorService;
+import com.java.designpatterns.proxy.Proxy;
+import com.java.designpatterns.proxy.authentication.AuthenticationProxy;
 import com.java.designpatterns.singleton.MobileUser;
 import com.java.designpatterns.singleton.ServersController;
 import com.java.designpatterns.singleton.Singleton;
@@ -219,5 +223,34 @@ public class Main {
         abstraction.implementationMethod();
         abstraction.setImplementation(new OtherImplementation());
         abstraction.implementationMethod();
+
+        //Proxy
+        Proxy proxy = new Proxy();
+        proxy.query();
+
+        ////////////
+        AuthenticationProxy authProxy = new AuthenticationProxy("fks1fjl5mdsa");
+        System.out.println(authProxy.getData());
+
+        AuthenticationProxy authProxy2 = new AuthenticationProxy("qwertyuiop22");
+        System.out.println(authProxy2.getData());
+
+        //Composite
+        Composite root = new Composite("root");
+        root.add(new Leaf("LeafA"));
+        root.add(new Leaf("LeafB"));
+
+        Composite composite = new Composite("CompositeX");
+        composite.add(new Leaf("LeafXA"));
+        composite.add(new Leaf("LeafXB"));
+
+        root.add(composite);
+        root.add(new Leaf("LeafC"));
+
+        Leaf leaf = new Leaf("LeafD");
+        root.add(leaf);
+        root.delete(leaf);
+
+        root.show(1);
     }
 }
