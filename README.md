@@ -8,5 +8,6 @@
 - Facade
 - Adapter
 - Flyweight
-
-
+- Bridge
+- Proxy
+- Composite
