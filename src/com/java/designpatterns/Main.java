@@ -39,6 +39,8 @@ import com.java.designpatterns.factory.militaryunits.MilitaryUnit;
 import com.java.designpatterns.flyweight.FlyweightsFactory;
 import com.java.designpatterns.flyweight.SpecificFlyweight;
 import com.java.designpatterns.flyweight.signs.SignsFactory;
+import com.java.designpatterns.iterator.Iterator;
+import com.java.designpatterns.iterator.NamesManager;
 import com.java.designpatterns.prototype.PrototypeX;
 import com.java.designpatterns.prototype.PrototypeY;
 import com.java.designpatterns.prototype.colors.Color;
@@ -252,5 +254,22 @@ public class Main {
         root.delete(leaf);
 
         root.show(1);
+
+        //Iterator
+        NamesManager namesManager = new NamesManager();
+        namesManager.setElement("Piotr");
+        namesManager.setElement("Jan");
+        namesManager.setElement("Marta");
+        namesManager.setElement("Szymon");
+        namesManager.setElement("Ania");
+
+        Iterator iterator = namesManager.createIterator();
+        System.out.println("Iteration of collection: ");
+
+        Object element = iterator.firstElement();
+        while (element != null) {
+            System.out.println(element);
+            element = iterator.nextElement();
+        }
     }
 }
