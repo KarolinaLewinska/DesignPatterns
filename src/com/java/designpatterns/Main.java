@@ -17,6 +17,9 @@ import com.java.designpatterns.bridge.OtherImplementation;
 import com.java.designpatterns.bridge.SpecificImplementation;
 import com.java.designpatterns.composite.Composite;
 import com.java.designpatterns.composite.Leaf;
+import com.java.designpatterns.decorator.Book;
+import com.java.designpatterns.decorator.Movie;
+import com.java.designpatterns.decorator.Rental;
 import com.java.designpatterns.facade.Facade;
 import com.java.designpatterns.facade.bank.Client;
 import com.java.designpatterns.facade.bank.Mortgage;
@@ -50,6 +53,9 @@ import com.java.designpatterns.proxy.authentication.AuthenticationProxy;
 import com.java.designpatterns.singleton.MobileUser;
 import com.java.designpatterns.singleton.ServersController;
 import com.java.designpatterns.singleton.Singleton;
+import com.java.designpatterns.templatemethod.AbstractClass;
+import com.java.designpatterns.templatemethod.SpecificClassA;
+import com.java.designpatterns.templatemethod.SpecificClassB;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -271,5 +277,27 @@ public class Main {
             System.out.println(element);
             element = iterator.nextElement();
         }
+
+        //Decorator
+        Book book = new Book("Worley", "Inside ASP.NET", 20);
+        book.show();
+
+        Movie movie = new Movie("Spielberg", "Jaws", 23, 92);
+        movie.show();
+
+        Rental availableMovie = new Rental(movie);
+        availableMovie.rentLibraryPosition("Karolina Lewińska");
+        availableMovie.show();
+
+        Rental availableBook = new Rental(book);
+        availableBook.rentLibraryPosition("Karolina Lewińska");
+        availableBook.show();
+
+        //Template method
+        AbstractClass classA = new SpecificClassA();
+        classA.templateMethod();
+
+        AbstractClass classB = new SpecificClassB();
+        classB.templateMethod();
     }
 }
